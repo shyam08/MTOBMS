@@ -1,0 +1,21 @@
+version: "3"
+services:
+  mtombs:
+    image: 0fb3d2a13927
+    ports:
+      - "8080:9090"
+    networks:
+      - mtombs-mysql
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    networks:
+      - mtombs-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=MTOMBS  
+
+networks:
+	mtombs-mysql
