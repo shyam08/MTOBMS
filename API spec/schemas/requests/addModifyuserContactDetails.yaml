@@ -1,25 +1,17 @@
 type: object
 required:
-  - accountNumber
-  - accountType
-  - accountholderFirstName
-  - accountholderLastName
-  - dateOfBirth
   - phoneNumber
+  - emailId
+  - firstName
+  - lastName
+  - dateOfBirth
+  - timestamp
 properties:
-  accountNumber:
-    type: integer
-    description: The account number of the bank account.
-    nullable: false
-  accountType:
-    type: string
-    description: The  bank account type code.
-    nullable: false
-  accountholderFirstName:
+  firstName:
     type: string
     description: The available balance of the account.
     nullable: false
-  accountholderLastName:
+  lastName:
     type: string
     description: The available balance of the account.
     nullable: false
@@ -28,7 +20,7 @@ properties:
     description: account holder date of birth
     format: date
     nullable: false
-  emailID:
+  emailId:
     type: string
     pattern: ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
     description: account holder email id

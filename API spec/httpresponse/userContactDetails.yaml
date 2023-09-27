@@ -1,0 +1,19 @@
+description: Success
+content:
+  application/json: 
+    schema:
+      type: array
+      items:
+        $ref: '#/components/schemas/CheckingAccountTypeResponse'
+    examples:
+      Current accounts Details:
+        value:
+           {
+              "UserDetails":
+                {
+                      "Id": "1023456879",
+                      "PhoneNo": "7020465048",
+                      "firstname": "Ramesh",
+                      "lastName": 'kumar',
+                      "emailId": 'kumar@xyz.com',
+                    }

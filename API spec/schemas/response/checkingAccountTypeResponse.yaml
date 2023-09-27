@@ -1,25 +1,23 @@
 
       type: object
       properties:
-        accountNumber:
+        Id:
           type: integer
           description: The account number.
           nullable: false
-        accountType:
+        phoneNumber:
           type: integer
           description: The account type code.
           nullable: false
-        availableBalance:
-          type: number
+        firstName:
+          type: String
           description: The available balance of the account.
           format: double
-        totalBalance:
-          type: number
+        lastName:
+          type: String
           description: The current balance of the account.
           format: double
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountCardResponse'
-          description: Array of card linked to this account.
+        emailId:
+          type: String
+          description: The current balance of the account.
           nullable: true

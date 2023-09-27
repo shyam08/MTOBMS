@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  title: User Contacts Domain API
+  version: v1
+  contact:
+    email: shysunder@gmail.com
+    name: shyam sharma
+paths:
+
+# Reterive all multiple accounts associated withprovided customer ID
+  /user-svc/v1/contacts/{Id}:
+    get:
+      tags:
+        - UserContacts
+      summary: >-  
+         customer ID get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
+      operationId: 'get contact using id'
+      
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: integer
+            maxLength: 15
+            minLength: 8
+      responses:
+        '200':
+          $ref: '#/components/responses/userContactDetails'
+        '400':
+           $ref: '#/components/responses/BadRequest'
+        '401':
+           $ref: '#/components/responses/Unautherize'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+           $ref: '#/components/responses/ServerError'
+
+#  manage all account with associated particular account number
+  /user-svc/v1/contacts/:
+# create fresh account number based on provided input data
+    post:
+      tags:
+        - NewAccounts
+      summary: >-  
+        create new User account
+      operationId: 'add new contact"'
+      requestBody:
+        description: The request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addModifyuserContactDetails'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Response'
+        '400':
+           $ref: '#/components/responses/BadRequest'
+        '401':
+           $ref: '#/components/responses/Unautherize'
+        '404':
+          $ref: '#/components/responses/RecordNotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+           $ref: '#/components/responses/ServerError'
+
+components:
+  schemas:
+    addModifyuserContactDetails:
+      $ref: "./schemas/requests/addModifyuserContactDetails.yaml"
+
+    ProblemDetails:
+      $ref: "./schemas/error/ProblemDetails.yaml"
+    ValidationProblemDetails:
+       $ref: "./schemas/error/ValidationProblemDetails.yaml"
+
+  parameters:
+    customerID:
+      $ref: "./parameters/customerID.yaml"
+    accountNumber:
+      $ref: "./parameters/customerID.yaml"
+
+  responses:
+  # HTTP Server Responses
+    userContactDetails:
+      $ref: "./httpresponse/userContactDetails.yaml"
+    addModifyuserContactDetails:
+      $ref: "./httpresponse/userContactDetails.yaml"
+    201Response:
+       $ref: "./httpresponse/201.yaml"
+    Unautherize:
+       $ref: "./httpresponse/401.yaml"
+    ServerError:
+       $ref: "./httpresponse/500.yaml"
+    RecordNotFound:
+      $ref: "./httpresponse/404.yaml"
+    BadRequest:
+      $ref: "./httpresponse/400.yaml"
+    MethodNotAllowed:
+      $ref: "./httpresponse/405.yaml"
+
+# Security Schema for authentication or autherization  
+  securitySchemes:
+      bearerAuth: # arbitrary name for the security scheme
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+      oAuth2AllGrant:
+        type: oauth2
+        description: For more information, see https://xxx.com/docs/oauth2/requests
+        flows: 
+          implicit:
+            authorizationUrl: https://xxxx.com/oauth2/authorize
+            scopes:
+              read: Grant read-only access to all your data except for the account and user info
+              write: Grant write-only access to all your data except for the account and user info
+              profile: Grant read-only access to the account and user info only
+      oAuth2Read:
+        type: oauth2
+        description: For more information, see https://xxx.com/docs/oauth2/requests
+        flows: 
+          implicit:
+            authorizationUrl: https://xxxx.com/oauth2/authorize
+            scopes:
+              read: Grant read-only access to all your data except for the account and user info
+
+security:
+  - bearerAuth: []
+  - oAuth2AllGrant: []
+  - oAuth2Read: []
+      
