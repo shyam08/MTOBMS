@@ -1,0 +1,12 @@
+
+description: Bad Request
+content:
+  application/json:
+    examples:
+      accountUpdated:
+        value:
+          {
+            title": "Account Updated",
+            "status": "Success",
+            "detail": "Account either created or updated"
+          }

@@ -1,0 +1,13 @@
+description: Record Not Found
+content:
+  application/json:
+    schema:
+      $ref: '#/components/schemas/ProblemDetails'
+    examples:
+      ErrorResponse:
+        value: 
+          {
+            "title": "No record found",
+            "status": "Error",
+            "detail": "May be provider account number not exits or invalid account number "
+          }

@@ -1,0 +1,13 @@
+description: Method Not Allowed
+content:
+  application/json:
+    schema:
+      $ref: '#/components/schemas/ProblemDetails'
+    examples:
+      ErrorResponse:
+        value:
+          {
+            "title": "Invalid Operation",
+            "status": "Error ",
+            "detail": "Please trigger valid operation"
+          }

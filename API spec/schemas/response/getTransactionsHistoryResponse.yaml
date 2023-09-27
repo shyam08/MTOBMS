@@ -1,0 +1,17 @@
+type: object
+properties:
+  pending:
+    type: array
+    items:
+      $ref: '#/components/schemas/TransactionResponse'
+    description: Array of pending transactions
+    nullable: true
+  transactions:
+    type: array
+    items:
+      $ref: '#/components/schemas/TransactionResponse'
+    description: Array of transactions
+    nullable: true
+  account:
+    $ref: '#/components/schemas/AccountDetailResponse'
+additionalProperties: false

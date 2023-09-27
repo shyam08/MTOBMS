@@ -1,0 +1,13 @@
+
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: false
+        status:
+          type: string
+          nullable: false
+        detail:
+          type: string
+          nullable: false
+      additionalProperties: false

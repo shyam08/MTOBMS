@@ -1,0 +1,23 @@
+type: object
+properties:
+  accountNumber:
+    type: string
+    description: The account number of the affected account.
+    nullable: false
+  accountType:
+    type: string
+    description: The  bank code of the affected account.
+    nullable: false
+  availableBalance:
+    type: number
+    description: The new available balance of the affected account.
+    format: double
+  currentBalance:
+    type: number
+    description: The new current balance of the affected account.
+    format: double
+  accountHolderName:
+    type: string
+    description: The name of the account.
+    nullable: false
+additionalProperties: false

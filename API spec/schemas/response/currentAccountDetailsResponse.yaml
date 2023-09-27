@@ -1,0 +1,37 @@
+type: object
+properties:
+  transaction:
+    transactionID:
+      type: number
+      description: transactionID.
+    CreditDate:
+      type: string
+      description: The date the transaction occurred.
+      format: date
+      nullable: false
+    CreditAmount:
+      type: number
+      description: The amount credit for the transaction
+    DebitedDate:
+      type: string
+      description: The date the transaction occurred.
+      format: date
+      nullable: false
+    DebitedAmount:
+      type: number
+      description: The amount debited for the transaction
+
+    transactionDetails:
+      type: string
+      description: The description of the transactionDetails
+      nullable: true
+    Balance:
+      type: number
+      description: current balance
+  cards:
+    type: array
+    items:
+      $ref: '#/components/schemas/AccountCardResponse'
+    description: Array of card linked to this account.
+    nullable: true
+additionalProperties: false

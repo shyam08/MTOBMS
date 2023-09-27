@@ -1,0 +1,13 @@
+description: Server Error
+content:
+  application/json:
+    schema:
+      $ref: '#/components/schemas/ProblemDetails'
+    examples:
+      ErrorResponse:
+        value: 
+          {
+            "title": "Internal Issue",
+            "status": "Technical Errorr",
+            "detail": "There some technical issue please try after sometime "
+          }

@@ -1,0 +1,13 @@
+description: Bad Request
+content:
+  application/json:
+    schema:
+      $ref: '#/components/schemas/ProblemDetails'
+    examples:
+      ErrorResponse:
+        value:
+          {
+            "title": "Invalid Data",
+            "status": "Error ",
+            "detail": "Please pass correct data"
+          }

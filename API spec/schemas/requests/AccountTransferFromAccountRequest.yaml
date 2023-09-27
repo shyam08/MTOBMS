@@ -1,0 +1,11 @@
+
+      type: object
+      properties:
+        accountNumber:
+          type: integer
+          format: int64
+          maxLength: 20
+          minLength: 10
+          description: The account number
+          nullable: false
+      additionalProperties: false

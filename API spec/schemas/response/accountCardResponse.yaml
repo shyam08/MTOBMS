@@ -1,0 +1,14 @@
+type: object
+properties:
+  cardID:
+    type: string
+    description: The id of the card.
+    nullable: true
+  pan:
+    type: string
+    description: The number displayed on the card.
+    nullable: true
+  isActive:
+    type: boolean
+    description: Indicator whether card is active or not.
+    nullable: true

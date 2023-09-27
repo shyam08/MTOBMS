@@ -1,0 +1,8 @@
+name: "custID"
+in: path
+required: true
+schema:
+  type: integer
+  maxLength: 15
+  minLength: 8
+  format: int64

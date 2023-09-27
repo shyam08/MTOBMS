@@ -1,0 +1,28 @@
+type: object
+properties:
+  TransactionID:
+    type: string
+    description: The account number.
+    nullable: true
+  Transactiondate:
+    type: string
+    format: datetime
+    description: fund transfer timestamp
+  availableBalance:
+    type: number
+    description: The available balance of the account.
+    format: double
+  currentBalance:
+    type: number
+    description: The current balance of the account.
+    format: double
+  status:
+    type: string
+    description: The name of the account.
+    nullable: false
+  properties:
+    type: object
+    additionalProperties: {}
+    description: Custom properties returned by the adaptor.
+    nullable: true
+additionalProperties: false

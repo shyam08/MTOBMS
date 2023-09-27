@@ -1,0 +1,34 @@
+description: Success
+content:
+  application/json: 
+    schema:
+      type: array
+      items:
+        $ref: '#/components/schemas/CheckingAccountTypeResponse'
+    examples:
+      Current accounts Details:
+        value:
+           {
+              "accounts": 
+                [{
+                      "accountNumber": "1023456879",
+                      "accountType": "current",
+                      "availableBalance": 350000.00,
+                      "currentBalance": 45000.00,
+                    },{
+                      "accountNumber": "1023456879",
+                      "accountType": "current",
+                      "availableBalance": 350000.00,
+                      "currentBalance": 45000.00,}],
+                      
+              "cardDetails": 
+                [{
+                    "cardID": "1023456879",
+                    "pan": "JDIGND3004",
+                    "isActived": 1,
+                },{
+                  "cardID": "1023456879",
+                  "pan": "JDIGND3004",
+                  "isActived": 0,}]
+            }
+      

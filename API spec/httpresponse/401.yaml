@@ -1,0 +1,13 @@
+description: Unauthorized
+content:
+  application/json:
+    schema:
+      $ref: '#/components/schemas/ProblemDetails'
+    examples:
+      ErrorResponse:
+        value:
+          {
+            "title": "Authentication Failed",
+            "status": "Error ",
+            "detail": "Either token get expired or invalid. Please try againw it valid token"
+          }

@@ -1,0 +1,33 @@
+type: object
+properties:
+  trsanctionID:
+    type: string
+    description: The transaction number of the bank account.
+    nullable: false
+  accountNumber:
+    type: string
+    description: The account number of the bank account.
+    nullable: false
+  accountType:
+    type: string
+    description: The  bank account type code.
+    nullable: false
+  availableBalance:
+    type: number
+    description: The available balance of the account.
+    format: double
+  currentBalance:
+    type: number
+    description: The current balance of the account
+    format: double
+  accountName:
+    type: string
+    description: The user defined account name or alias
+    nullable: false
+  cards:
+    type: array
+    items:
+      $ref: '#/components/schemas/AccountCardResponse'
+    description: Array of card linked to this account.
+    nullable: true
+additionalProperties: false

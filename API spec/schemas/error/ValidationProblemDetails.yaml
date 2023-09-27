@@ -1,0 +1,24 @@
+type: object
+properties:
+  type:
+    type: string
+    nullable: false
+  title:
+    type: string
+    nullable: false
+  status:
+    type: integer
+    format: int32
+    nullable: false
+  detail:
+    type: string
+    nullable: false
+  errors:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        type: string
+    nullable: false
+    readOnly: true
+additionalProperties: false
