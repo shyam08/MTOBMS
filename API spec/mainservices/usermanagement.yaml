@@ -75,12 +75,6 @@ components:
     ValidationProblemDetails:
        $ref: "../schemas/error/ValidationProblemDetails.yaml"
 
-  parameters:
-    customerID:
-      $ref: "../parameters/customerID.yaml"
-    accountNumber:
-      $ref: "../parameters/customerID.yaml"
-
   responses:
   # HTTP Server Responses
     userContactDetails:
