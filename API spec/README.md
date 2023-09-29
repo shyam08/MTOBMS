@@ -1,52 +1,100 @@
 
 # Open API for Banking to manage account services
 
-This project desing OpenAPI sepcification in (OAS 3.0.x) platform. To transformatin customer journey to digitalize into self service for Open Banking has captured the imagination of digital leaders and is emopowering customers to use new digital services with their banking information. Harnessing the power of platform that is open source, is helping banks to be in control of their own destintity and accelerating innovation. Create an ecosystem, connect with your customers or simply make it easier to partner with you. The objective of this project is to provide a an accelerator for open banking
+This project design in OpenAPI specification in (OAS 3.0.x)  to build assignment aka BookMyShow digital API platform for online ticket booking.
+Enable or transform as digital customer journey as  self service based, captured the imagination of digital leaders and is empowering customers to use new digital services. Harnessing the power of platform that is open source, is helping and control of their own destiny and accelerating innovation. Create an ecosystem, connect with your customers or simply make it easier to partner with you.
 
 
-## APIs
+## customer API
 
-#### /api/v1/customer/{custID}/accounts
-* `GET` : Get all accounts details
+####  /user-svcc/v1/contacts/{Id}:
+* `GET` : Get specific user details
+####  /user-svc/v1/contacts/:
+* `POST` : Add new user 
 
-####  /api/v1/accounts/{accountNumber}/current:
-* `GET` : Get current accounts details
-####  /api/v1/accounts/{accountNumber}/saving:
-* `GET` : Get saving accounts details
-####  /api/v1/accounts/{accountNumber}:
-* `POST`: Create new account number
-* `PUT` : Update account details
-* `DELETE` : Delete account number
+####   /catalog-svc/v1/carts/:
+* `POST` :Add new theatre
+####  /catalog-svc/v1/carts/{Id}:
+* `PUT` : Modify existing theater details
+* ####  /catalog-svc/v1/carts/{Id}:
+* `DELETE` : Modify existing theater details
+* * ####  /catalog-svc/v1/carts/{Id}:
+* `GET` : Retrieve existing theater details
 
-#### /api/v1/accounts/{accountNumber}/current/transactions
-* `GET` : reterive transaction history for specific account
-#### /api/v1/accounts/{accountNumber}/saving/transactions
-* `GET` : reterive transaction history for specific account
+####   /catalog-svc/v1/audies/:
+* `POST` :Add new theatre
+####  /catalog-svc/v1/audies/{Id}:
+* `PUT` : Modify existing theater details
+* ####  /catalog-svc/v1/audies/{Id}:
+* `DELETE` : Modify existing theater details
+* * ####  /catalog-svc/v1/audies/{Id}:
+* `GET` : Retrieve existing theater details
 
-####  /api/v1/accounts/{accountNumber}/saving/transfers
-* `POST` : Fund transfer to beneficiary account 
-####  /api/v1/accounts/{accountNumber}/saving/transfers
-* `POST` : Fund transfer to beneficiary account
-  
+
+####   /catalog-svc/v1/shows/:
+* `POST` :Add new theatre
+####  /catalog-svc/v1/shows/{Id}:
+* `PUT` : Modify existing theater details
+* ####  /catalog-svc/v1/shows/{Id}:
+* `DELETE` : Modify existing theater details
+* * ####  /catalog-svc/v1/shows/{Id}:
+* `GET` : Retrieve existing theater details
+* 
+####   /catalog-svc/v1/cities/:
+* `POST` :Add new theatre
+####  /catalog-svc/v1/cities/{Id}:
+* `PUT` : Modify existing theater details
+* ####  /catalog-svc/v1/cities/{Id}:
+* `DELETE` : Modify existing theater details
+* * ####  /catalog-svc/v1/cities/{Id}:
+* `GET` : Retrieve existing theater details
+
+####   /catalog-svc/v1/movies/:
+* `POST` :Add new theatre
+####  /catalog-svc/v1/movies/{Id}:
+* `PUT` : Modify existing theater details
+* ####  /catalog-svc/v1/movies/{Id}:
+* `DELETE` : Modify existing theater details
+* * ####  /catalog-svc/v1/movies/{Id}:
+* `GET` : Retrieve existing theater details
+
+####   /catalog-svc/v1/theatres/:
+* `POST` :Add new theatre
+####  /catalog-svc/v1/theatres/{Id}:
+* `PUT` : Modify existing theater details 
+* ####  /catalog-svc/v1/theatres/{Id}:
+* `DELETE` : Modify existing theater details
+* * ####  /catalog-svc/v1/theatres/{Id}:
+* `GET` : Retrieve existing theater details
+
+
+####   /catalog-svc/v1/orders/initiate:
+* `POST` :Add new theatre
+####  /catalog-svc/v1/orders/process:
+* `POST` : Modify existing theater details
+
 ## Structure
 ```
 ├── openapi.yaml
-│  ├── parameters
-│   │   └── accountNumber.yaml
-│   │   └── customerID.yaml
 │   ├── schemas
 │   │   └── request
-│  │   │   └── AccountTransferRequest.yaml     // APIs for Task model
-│  │   │   └── AccountTransferAccountRequest.yaml     // APIs for Task model
-│  │   │   └── CreateNewAccountRequest.yaml
-│  │   │   └── UpdateAccountRequest.yaml
-│  │   │   └── AccountTransferToAccountRequest.yaml
-│  │   │   └── AccountTransferFromAccountRequest.yaml 
+│  │   │   └── audiUpsertRequest.yaml     // APIs for Task model
+│  │   │   └── cartsUpsertRequest.yaml     // APIs for Task model
+│  │   │   └── cityUpsertRequest.yaml
+│  │   │   └── movieUpsertRequest.yaml
+│  │   │   └── ordernItiateUpsertRequest.yaml
+│  │   │   └── showUpsertRequest.yaml 
+│  │   │   └── theatreUpsertRequest.yaml 
 │   │   └── respons
-│  │   │   └── AccountTypeResponse.yaml     // APIs for Task model
-│  │   │   └── AccountCardResponse.yaml     // APIs for Task model
-│  │   │   └── CreateNewAccountRequest.yaml
-│  │   │   └── UpdateAccountRequest.yaml
+│  │   │   └── AudiResponse.yaml     // APIs for Task model
+│  │   │   └── cartsUpsertResponse.yaml     // APIs for Task model
+│  │   │   └── city.yaml
+│  │   │   └── movie.yaml
+│  │   │   └── orderInitiateUpsertResponse.yaml
+│  │   │   └── orderProcessUpsertResponse.yaml
+│  │   │   └── showUpsertResponse.yaml
+│  │   │   └── theatreUpsertResponse.yaml
+│  │   │   └── userContactDetails.yaml
 │  │   └── error
 │  │   │   └── ProblemDetails.yaml
 │  │   │   └── ValidationProblemDetails.yaml
@@ -60,10 +108,7 @@ This project desing OpenAPI sepcification in (OAS 3.0.x) platform. To transforma
 │   │   └── 404.yaml
 │   │   └── 404.yaml
 │   │   └── 500.yaml
-│   │   └── currentAccountResponse_200.yaml
-│   │   └── currentTransactionHistorySuccessfull_200.yaml
-│   │   └── savingAccountTypeResponse_200.yaml
-│   │   └── savingTransactionHistorySuccessfull_200.yaml
+
 │  ├── SecuritySchemas
 
 ## Todo
@@ -76,6 +121,9 @@ This project desing OpenAPI sepcification in (OAS 3.0.x) platform. To transforma
 - [x] Add all mock examples  to support all test coverage for successful response, request and error scenarios
 - [x] adopt modularziation 
 - [x] Cover all business scenarios   
+- [x] Modularity in designing as top to botton approach   
+- [x] Considering Resuability and global declaration   
+
 
 ## Install
   
