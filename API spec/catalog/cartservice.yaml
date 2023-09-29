@@ -125,28 +125,28 @@ paths:
 components:
   schemas:
     cartsUpsertRequest:
-      $ref: "./schemas/requests/cartsUpsertRequest.yaml"
+      $ref: "../schemas/requests/cartsUpsertRequest.yaml"
     ProblemDetails:
-      $ref: "./schemas/error/ProblemDetails.yaml"
+      $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
-       $ref: "./schemas/error/ValidationProblemDetails.yaml"
+       $ref: "../schemas/error/ValidationProblemDetails.yaml"
 
   responses:
   # HTTP Server Responses
     cartsUpsertResponse:
-       $ref: "./schemas/response/cartsUpsertResponse.yaml"
+       $ref: "../schemas/response/cartsUpsertResponse.yaml"
     201Response:
-       $ref: "./httpresponse/201.yaml"
+       $ref: "../httpresponse/201.yaml"
     Unautherize:
-       $ref: "./httpresponse/401.yaml"
+       $ref: "../httpresponse/401.yaml"
     ServerError:
-       $ref: "./httpresponse/500.yaml"
+       $ref: "../httpresponse/500.yaml"
     RecordNotFound:
-      $ref: "./httpresponse/404.yaml"
+      $ref: "../httpresponse/404.yaml"
     BadRequest:
-      $ref: "./httpresponse/400.yaml"
+      $ref: "../httpresponse/400.yaml"
     MethodNotAllowed:
-      $ref: "./httpresponse/405.yaml"
+      $ref: "../httpresponse/405.yaml"
 
 # Security Schema for authentication or autherization  
   securitySchemes:
