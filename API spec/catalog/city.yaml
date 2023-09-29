@@ -131,7 +131,7 @@ components:
   responses:
   # HTTP Server Responses
     city:
-      $ref: "../httpresponse/city.yaml"
+      $ref: "../schemas/response/city.yaml"
     201Response:
        $ref: "../httpresponse/201.yaml"
     Unautherize:

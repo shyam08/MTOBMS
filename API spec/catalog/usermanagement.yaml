@@ -68,37 +68,37 @@ paths:
 components:
   schemas:
     addModifyuserContactDetails:
-      $ref: "./schemas/requests/addModifyuserContactDetails.yaml"
+      $ref: "../schemas/requests/addModifyuserContactDetails.yaml"
 
     ProblemDetails:
-      $ref: "./schemas/error/ProblemDetails.yaml"
+      $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
-       $ref: "./schemas/error/ValidationProblemDetails.yaml"
+       $ref: "../schemas/error/ValidationProblemDetails.yaml"
 
   parameters:
     customerID:
-      $ref: "./parameters/customerID.yaml"
+      $ref: "../parameters/customerID.yaml"
     accountNumber:
-      $ref: "./parameters/customerID.yaml"
+      $ref: "../parameters/customerID.yaml"
 
   responses:
   # HTTP Server Responses
     userContactDetails:
-      $ref: "./httpresponse/userContactDetails.yaml"
+      $ref: "../schemas/response/userContactDetails.yaml"
     addModifyuserContactDetails:
-      $ref: "./httpresponse/userContactDetails.yaml"
+      $ref: "../schemas/response/userContactDetails.yaml"
     201Response:
-       $ref: "./httpresponse/201.yaml"
+       $ref: "../httpresponse/201.yaml"
     Unautherize:
-       $ref: "./httpresponse/401.yaml"
+       $ref: "../httpresponse/401.yaml"
     ServerError:
-       $ref: "./httpresponse/500.yaml"
+       $ref: "../httpresponse/500.yaml"
     RecordNotFound:
-      $ref: "./httpresponse/404.yaml"
+      $ref: "../httpresponse/404.yaml"
     BadRequest:
-      $ref: "./httpresponse/400.yaml"
+      $ref: "../httpresponse/400.yaml"
     MethodNotAllowed:
-      $ref: "./httpresponse/405.yaml"
+      $ref: "../httpresponse/405.yaml"
 
 # Security Schema for authentication or autherization  
   securitySchemes:

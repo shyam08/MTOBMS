@@ -77,7 +77,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AudiUpsertRequest'
+              $ref: '#/components/schemas/audiUpsertRequest'
       responses:
         '201':
           $ref: '#/components/responses/201Response'
@@ -104,7 +104,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/componenets/schemas/AudiUpsertRequest'
+              $ref: '#/components/schemas/audiUpsertRequest'
       responses:
         '201':
           $ref: '#/components/responses/201Response'
@@ -149,8 +149,8 @@ paths:
 
 components:
   schemas:
-    AudiUpsertRequest:
-      $ref: "../schemas/requests/AudiUpsertRequest.yaml"
+    audiUpsertRequest:
+      $ref: "../schemas/requests/audiUpsertRequest.yaml"
     ProblemDetails:
       $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
@@ -159,9 +159,9 @@ components:
   responses:
   # HTTP Server Responses
     AudiResponse:
-      $ref: "../httpresponse/AudiResponse.yaml"
+      $ref: "../schemas/response/AudiResponse.yaml"
     addModifyuserContactDetails:
-      $ref: "../httpresponse/userContactDetails.yaml"
+      $ref: "../schemas/response/userContactDetails.yaml"
     201Response:
        $ref: "../httpresponse/201.yaml"
     Unautherize:

@@ -122,7 +122,7 @@ paths:
 components:
   schemas:
     cityUpsertRequest:
-      $ref: ".../schemas/requests/movieUpsertRequest.yaml"
+      $ref: "../schemas/requests/movieUpsertRequest.yaml"
     ProblemDetails:
       $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
