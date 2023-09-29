@@ -1,19 +1,19 @@
 openapi: 3.0.0
 info:
-  title: movie shows service under catalog Domain
+  title: cart service under catalog Domain
   version: v1
   contact:
     email: shysunder@gmail.com
     name: shyam sharma
 paths:
 
-  /catalog-svc/v1/shows/{id}:
+  /cart-svc/v1/carts/{id}:
     get:
       tags:
-        - shows details
+        - carts details
       summary: >-  
-         Reterive shows details based on provided specific  ID as get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
-      operationId: 'get shows details'
+         Reterive carts details based on provided specific  ID as get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
+      operationId: 'get carts details'
       
       parameters:
         - name: Id
@@ -26,7 +26,7 @@ paths:
 
       responses:
         '200':
-          $ref: '#/components/responses/showsUpsertResponse'
+          $ref: '#/components/responses/cartsUpsertResponse'
         '400':
            $ref: '#/components/responses/BadRequest'
         '401':
@@ -37,19 +37,19 @@ paths:
            $ref: '#/components/responses/ServerError'
 
 
-    # Add new shows data
+    # Add new carts data
     put:
       tags:
-        - modify existing show
+        - modify existing carts
       summary: >-
-        create new shows
-      operationId: 'modify show'
+        create new carts
+      operationId: 'modify carts'
       requestBody:
         description: The request body
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/showUpsertRequest'
+              $ref: '#/components/schemas/cartsUpsertRequest'
       responses:
         '201':
           $ref: '#/components/responses/201Response'
@@ -66,10 +66,10 @@ paths:
 
     delete:
       tags:
-        - show delete
+        - carts delete
       summary: >-
-        delete show entry for specific id.
-      operationId: 'get show details'
+        delete carts entry for specific id.
+      operationId: 'get carts details'
 
       parameters:
         - name: Id
@@ -82,7 +82,7 @@ paths:
 
       responses:
         '200':
-          $ref: '#/components/responses/showsUpsertResponse'
+          $ref: '#/components/responses/cartsUpsertResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -93,20 +93,20 @@ paths:
           $ref: '#/components/responses/ServerError'
 
 
-    /catalog-svc/v1/shows/:
-# Add new shows data
+  /catalog-svc/v1/carts/:
+# Add new carts data
     post:
       tags:
-        - New shows add
+        - New theatre add
       summary: >-  
-        Add new shows
-      operationId: 'add new shows"'
+        Add new carts
+      operationId: 'add new carts"'
       requestBody:
         description: The request body
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/showUpsertRequest'
+              $ref: '#/components/schemas/cartsUpsertRequest'
       responses:
         '201':
           $ref: '#/components/responses/201Response'
@@ -124,8 +124,8 @@ paths:
 
 components:
   schemas:
-    showUpsertRequest:
-      $ref: "../schemas/requests/showUpsertRequest.yaml"
+    cartsUpsertRequest:
+      $ref: "../schemas/requests/cartsUpsertRequest.yaml"
     ProblemDetails:
       $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
@@ -133,8 +133,8 @@ components:
 
   responses:
   # HTTP Server Responses
-    showsUpsertResponse:
-       $ref: "../schemas/response/showUpsertResponse.yaml"
+    cartsUpsertResponse:
+       $ref: "../schemas/response/cartsUpsertResponse.yaml"
     201Response:
        $ref: "../httpresponse/201.yaml"
     Unautherize:

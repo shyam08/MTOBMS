@@ -1,19 +1,19 @@
 openapi: 3.0.0
 info:
-  title: movie  API
+  title: movie shows service under catalog Domain
   version: v1
   contact:
     email: shysunder@gmail.com
     name: shyam sharma
 paths:
 
-  /catalog-svc/v1/movies/{id}:
+  /catalog-svc/v1/shows/{id}:
     get:
       tags:
-        - movie  details
+        - shows details
       summary: >-  
-        get movie details based on provided city id
-      operationId: 'get movie details'
+         Reterive shows details based on provided specific  ID as get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
+      operationId: 'get shows details'
       
       parameters:
         - name: Id
@@ -21,12 +21,12 @@ paths:
           required: true
           schema:
             type: integer
-            maxLength: 8
-            minLength: 2
+            maxLength: 15
+            minLength: 8
 
       responses:
         '200':
-          $ref: '#/components/responses/movie'
+          $ref: '#/components/responses/showsUpsertResponse'
         '400':
            $ref: '#/components/responses/BadRequest'
         '401':
@@ -36,75 +36,20 @@ paths:
         '500':
            $ref: '#/components/responses/ServerError'
 
-    delete:
-      tags:
-        -  delete movie
-      summary: >-
-        delete movie based on provided movie id
-      operationId: 'delete movie '
 
-      parameters:
-        - name: Id
-          in: path
-          required: true
-          schema:
-            type: integer
-            maxLength: 8
-            minLength: 2
-
-      responses:
-        '200':
-          $ref: '#/components/responses/movie'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unautherize'
-        '405':
-          $ref: '#/components/responses/MethodNotAllowed'
-        '500':
-          $ref: '#/components/responses/ServerError'
-
-  /user-svc/v1/movies/:
-# Add new Audi data
-    post:
-      tags:
-        - add new movie
-      summary: >-  
-        add new movie
-      operationId: 'add new movie"'
-      requestBody:
-        description: The request body
-        content:
-          application/json:
-            schema:
-              $ref:'#/componenets/schemas/movieUpsertRequest'
-      responses:
-        '201':
-            $ref: '#/components/responses/201Response'
-        '400':
-           $ref: '#/components/responses/BadRequest'
-        '401':
-           $ref: '#/components/responses/Unautherize'
-        '404':
-          $ref: '#/components/responses/RecordNotFound'
-        '405':
-          $ref: '#/components/responses/MethodNotAllowed'
-        '500':
-           $ref: '#/components/responses/ServerError'
-
-    # Add new Audi data
+    # Add new shows data
     put:
       tags:
-        - modify movie details
+        - modify existing show
       summary: >-
-        create new movie entry
-      operationId: 'modify new MOVIE"'
+        create new shows
+      operationId: 'modify show'
       requestBody:
         description: The request body
         content:
           application/json:
             schema:
-              $ref:'#/componenets/schemas/movieUpsertRequest'
+              $ref: '#/components/schemas/showUpsertRequest'
       responses:
         '201':
           $ref: '#/components/responses/201Response'
@@ -119,10 +64,68 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 
+    delete:
+      tags:
+        - show delete
+      summary: >-
+        delete show entry for specific id.
+      operationId: 'get show details'
+
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: integer
+            maxLength: 15
+            minLength: 8
+
+      responses:
+        '200':
+          $ref: '#/components/responses/showsUpsertResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+
+  /catalog-svc/v1/shows/:
+# Add new shows data
+    post:
+      tags:
+        - New shows add
+      summary: >-  
+        Add new shows
+      operationId: 'add new shows"'
+      requestBody:
+        description: The request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/showUpsertRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Response'
+        '400':
+           $ref: '#/components/responses/BadRequest'
+        '401':
+           $ref: '#/components/responses/Unautherize'
+        '404':
+          $ref: '#/components/responses/RecordNotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+           $ref: '#/components/responses/ServerError'
+
+
 components:
   schemas:
-    cityUpsertRequest:
-      $ref: "../schemas/requests/movieUpsertRequest.yaml"
+    showUpsertRequest:
+      $ref: "../schemas/requests/showUpsertRequest.yaml"
     ProblemDetails:
       $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
@@ -130,8 +133,8 @@ components:
 
   responses:
   # HTTP Server Responses
-    movie:
-      $ref: "../schemas/response/movie.yaml"
+    showsUpsertResponse:
+       $ref: "../schemas/response/showUpsertResponse.yaml"
     201Response:
        $ref: "../httpresponse/201.yaml"
     Unautherize:
