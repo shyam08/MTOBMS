@@ -34,11 +34,41 @@ paths:
         '500':
            $ref: '#/components/responses/ServerError'
 
+  /order-svc/v1/orders/process:
+    post:
+      tags:
+        - orders process
+      summary: >-
+        orders process
+      operationId: 'orders process"'
+      requestBody:
+        description: The request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/orderProcessUpsertRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Response'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '404':
+          $ref: '#/components/responses/RecordNotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
 
 components:
   schemas:
     ordernIntiateUpsertRequest:
       $ref: "../schemas/requests/ordernItiateUpsertRequest.yaml"
+    orderProcessUpsertRequest:
+      $ref: "../schemas/requests/orderProcessUpsertRequest.yaml"
+
+
     ProblemDetails:
       $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
