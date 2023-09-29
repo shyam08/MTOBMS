@@ -1,20 +1,19 @@
 openapi: 3.0.0
 info:
-  title: User Contacts Domain API
+  title: movie  API
   version: v1
   contact:
     email: shysunder@gmail.com
     name: shyam sharma
 paths:
 
-# Reterive all multiple accounts associated withprovided customer ID
-  /user-svc/v1/contacts/{Id}:
+  /catalog-svc/v1/movies/{id}:
     get:
       tags:
-        - UserContacts
+        - movie  details
       summary: >-  
-         customer ID get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
-      operationId: 'get contact using id'
+        get movie details based on provided city id
+      operationId: 'get movie details'
       
       parameters:
         - name: Id
@@ -22,11 +21,12 @@ paths:
           required: true
           schema:
             type: integer
-            maxLength: 15
-            minLength: 8
+            maxLength: 8
+            minLength: 2
+
       responses:
         '200':
-          $ref: '#/components/responses/userContactDetails'
+          $ref: '#/components/responses/movie'
         '400':
            $ref: '#/components/responses/BadRequest'
         '401':
@@ -36,24 +36,51 @@ paths:
         '500':
            $ref: '#/components/responses/ServerError'
 
-#  manage all account with associated particular account number
-  /user-svc/v1/contacts/:
-# create fresh account number based on provided input data
+    delete:
+      tags:
+        -  delete movie
+      summary: >-
+        delete movie based on provided movie id
+      operationId: 'delete movie '
+
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: integer
+            maxLength: 8
+            minLength: 2
+
+      responses:
+        '200':
+          $ref: '#/components/responses/movie'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /user-svc/v1/movies/:
+# Add new Audi data
     post:
       tags:
-        - NewAccounts
+        - add new movie
       summary: >-  
-        create new User account
-      operationId: 'add new contact"'
+        add new movie
+      operationId: 'add new movie"'
       requestBody:
         description: The request body
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/addModifyuserContactDetails'
+              $ref:'#/componenets/schemas/movieUpsertRequest'
       responses:
         '201':
-          $ref: '#/components/responses/201Response'
+            $ref: '#/components/responses/201Response'
         '400':
            $ref: '#/components/responses/BadRequest'
         '401':
@@ -65,40 +92,58 @@ paths:
         '500':
            $ref: '#/components/responses/ServerError'
 
+    # Add new Audi data
+    put:
+      tags:
+        - modify movie details
+      summary: >-
+        create new movie entry
+      operationId: 'modify new MOVIE"'
+      requestBody:
+        description: The request body
+        content:
+          application/json:
+            schema:
+              $ref:'#/componenets/schemas/movieUpsertRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Response'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '404':
+          $ref: '#/components/responses/RecordNotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
 components:
   schemas:
-    addModifyuserContactDetails:
-      $ref: "./schemas/requests/addModifyuserContactDetails.yaml"
-
+    cityUpsertRequest:
+      $ref: ".../schemas/requests/movieUpsertRequest.yaml"
     ProblemDetails:
-      $ref: "./schemas/error/ProblemDetails.yaml"
+      $ref: "../schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
-       $ref: "./schemas/error/ValidationProblemDetails.yaml"
-
-  parameters:
-    customerID:
-      $ref: "./parameters/customerID.yaml"
-    accountNumber:
-      $ref: "./parameters/customerID.yaml"
+       $ref: "../schemas/error/ValidationProblemDetails.yaml"
 
   responses:
   # HTTP Server Responses
-    userContactDetails:
-      $ref: "./httpresponse/userContactDetails.yaml"
-    addModifyuserContactDetails:
-      $ref: "./httpresponse/userContactDetails.yaml"
+    movie:
+      $ref: "../schemas/response/movie.yaml"
     201Response:
-       $ref: "./httpresponse/201.yaml"
+       $ref: "../httpresponse/201.yaml"
     Unautherize:
-       $ref: "./httpresponse/401.yaml"
+       $ref: "../httpresponse/401.yaml"
     ServerError:
-       $ref: "./httpresponse/500.yaml"
+       $ref: "../httpresponse/500.yaml"
     RecordNotFound:
-      $ref: "./httpresponse/404.yaml"
+      $ref: "../httpresponse/404.yaml"
     BadRequest:
-      $ref: "./httpresponse/400.yaml"
+      $ref: "../httpresponse/400.yaml"
     MethodNotAllowed:
-      $ref: "./httpresponse/405.yaml"
+      $ref: "../httpresponse/405.yaml"
 
 # Security Schema for authentication or autherization  
   securitySchemes:

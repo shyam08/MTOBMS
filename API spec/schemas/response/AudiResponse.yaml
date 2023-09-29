@@ -1,0 +1,31 @@
+
+type: object
+properties:
+  Id:
+    type: integer
+    description: The account number.
+    nullable: false
+  name:
+    type: string
+    description: Audi name.
+    nullable: false
+  frontSeats:
+    type: integer
+    description: front seats count.
+    nullable: false
+  middleSeats:
+    type: integer
+    description: middle seats count.
+    nullable: false
+  backSeats:
+    type: integer
+    description: back seats count.
+    nullable: false
+  totalSeats:
+    type: integer
+    description: totalSeats  count.
+    nullable: false
+  theatreId:
+    type: integer
+    description: totalSeats  count.
+    nullable: false

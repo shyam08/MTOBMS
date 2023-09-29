@@ -1,0 +1,41 @@
+
+type: object
+properties:
+  cityId:
+    type: integer
+    description: movie Id.
+    required: true
+    nullable: false
+
+  theatreId:
+    type: integer
+    description: movie Id.
+    required: true
+    nullable: false
+  sessionId:
+    type: integer
+    description: movie Id.
+    required: true
+    nullable: false
+
+  audiId:
+    type: integer
+    description: audi Id.
+    required: true
+    nullable: false
+
+  showId:
+    type: integer
+    description: blockedSeats Id.
+    nullable: false
+
+  seats:
+    type: array
+    description: list of seats.
+    format : date
+
+  CartBillDetail:
+    type: array
+    description: Array of card linked to this account.
+    nullable: true
+

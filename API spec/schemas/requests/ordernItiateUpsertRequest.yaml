@@ -1,0 +1,36 @@
+
+type: object
+properties:
+  orderId:
+    type: integer
+    description: order ID.
+    format: int64
+    required: true
+    nullable: false
+  paymentGtwId:
+    type: integer
+    description: payment Gateway Id.
+    required: true
+    nullable: false
+  payementOptionId:
+    type: integer
+    description: payement Option Id.
+    required: true
+    nullable: false
+
+  paymentTransactionId:
+    type: string
+    description: payment Transaction Id.
+    required: true
+    nullable: false
+
+  paymentStatus:
+    type: string
+    description: payment Status.
+    required: true
+    nullable: false
+  reason:
+    type: string
+    description: reason details.
+    required: true
+

@@ -1,20 +1,19 @@
 openapi: 3.0.0
 info:
-  title: User Contacts Domain API
+  title: cart service under catalog Domain
   version: v1
   contact:
     email: shysunder@gmail.com
     name: shyam sharma
 paths:
 
-# Reterive all multiple accounts associated withprovided customer ID
-  /user-svc/v1/contacts/{Id}:
+  /cart-svc/v1/carts/{id}:
     get:
       tags:
-        - UserContacts
+        - carts details
       summary: >-  
-         customer ID get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
-      operationId: 'get contact using id'
+         Reterive carts details based on provided specific  ID as get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
+      operationId: 'get carts details'
       
       parameters:
         - name: Id
@@ -24,9 +23,10 @@ paths:
             type: integer
             maxLength: 15
             minLength: 8
+
       responses:
         '200':
-          $ref: '#/components/responses/userContactDetails'
+          $ref: '#/components/responses/cartsUpsertResponse'
         '400':
            $ref: '#/components/responses/BadRequest'
         '401':
@@ -36,21 +36,77 @@ paths:
         '500':
            $ref: '#/components/responses/ServerError'
 
-#  manage all account with associated particular account number
-  /user-svc/v1/contacts/:
-# create fresh account number based on provided input data
-    post:
+
+    # Add new carts data
+    put:
       tags:
-        - NewAccounts
-      summary: >-  
-        create new User account
-      operationId: 'add new contact"'
+        - modify existing carts
+      summary: >-
+        create new carts
+      operationId: 'modify carts'
       requestBody:
         description: The request body
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/addModifyuserContactDetails'
+              $ref: '#/components/schemas/cartsUpsertRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Response'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '404':
+          $ref: '#/components/responses/RecordNotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+    delete:
+      tags:
+        - carts delete
+      summary: >-
+        delete carts entry for specific id.
+      operationId: 'get carts details'
+
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: integer
+            maxLength: 15
+            minLength: 8
+
+      responses:
+        '200':
+          $ref: '#/components/responses/cartsUpsertResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+
+    /catalog-svc/v1/carts/:
+# Add new carts data
+    post:
+      tags:
+        - New theatre add
+      summary: >-  
+        Add new carts
+      operationId: 'add new carts"'
+      requestBody:
+        description: The request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cartsUpsertRequest'
       responses:
         '201':
           $ref: '#/components/responses/201Response'
@@ -65,28 +121,20 @@ paths:
         '500':
            $ref: '#/components/responses/ServerError'
 
+
 components:
   schemas:
-    addModifyuserContactDetails:
-      $ref: "./schemas/requests/addModifyuserContactDetails.yaml"
-
+    cartsUpsertRequest:
+      $ref: "./schemas/requests/cartsUpsertRequest.yaml"
     ProblemDetails:
       $ref: "./schemas/error/ProblemDetails.yaml"
     ValidationProblemDetails:
        $ref: "./schemas/error/ValidationProblemDetails.yaml"
 
-  parameters:
-    customerID:
-      $ref: "./parameters/customerID.yaml"
-    accountNumber:
-      $ref: "./parameters/customerID.yaml"
-
   responses:
   # HTTP Server Responses
-    userContactDetails:
-      $ref: "./httpresponse/userContactDetails.yaml"
-    addModifyuserContactDetails:
-      $ref: "./httpresponse/userContactDetails.yaml"
+    cartsUpsertResponse:
+       $ref: "./schemas/response/cartsUpsertResponse.yaml"
     201Response:
        $ref: "./httpresponse/201.yaml"
     Unautherize:

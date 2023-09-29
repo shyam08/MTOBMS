@@ -1,0 +1,23 @@
+
+type: object
+properties:
+  name:
+    type: string
+    description: city name.
+    nullable: false
+  description:
+    type: string
+    description: movie description name .
+    nullable: false
+  durationHour:
+    type: integer
+    description: duration Hour.
+    nullable: false
+  durationMint:
+    type: integer
+    description: duration Min.
+    nullable: false
+  variantId:
+    type: integer
+    description: variant Id.
+    nullable: false

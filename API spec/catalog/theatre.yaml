@@ -1,0 +1,180 @@
+openapi: 3.0.0
+info:
+  title: movie theatre service under catalog Domain
+  version: v1
+  contact:
+    email: shysunder@gmail.com
+    name: shyam sharma
+paths:
+
+  /catalog-svc/v1/theatres/{id}:
+    get:
+      tags:
+        - theatre details
+      summary: >-  
+         Reterive theatre details based on provided specific  ID as get in URI param its numerical value  ranges  min 8 to 15 max digit. reterive all account details ie. current and saving accounts.
+      operationId: 'get theatre details'
+      
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: integer
+            maxLength: 15
+            minLength: 8
+
+      responses:
+        '200':
+          $ref: '#/components/responses/theatreUpsertResponse'
+        '400':
+           $ref: '#/components/responses/BadRequest'
+        '401':
+           $ref: '#/components/responses/Unautherize'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+           $ref: '#/components/responses/ServerError'
+
+
+    # Add new shows data
+    put:
+      tags:
+        - modify existing theatre
+      summary: >-
+        create new theatre
+      operationId: 'modify theatre'
+      requestBody:
+        description: The request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/theatreUpsertRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Response'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '404':
+          $ref: '#/components/responses/RecordNotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+    delete:
+      tags:
+        - show delete
+      summary: >-
+        delete show entry for specific id.
+      operationId: 'get show details'
+
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: integer
+            maxLength: 15
+            minLength: 8
+
+      responses:
+        '200':
+          $ref: '#/components/responses/theatreUpsertResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unautherize'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+
+    /catalog-svc/v1/theatres/:
+# Add new theatre data
+    post:
+      tags:
+        - New theatre add
+      summary: >-  
+        Add new shows
+      operationId: 'add new theatre"'
+      requestBody:
+        description: The request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/theatreUpsertRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Response'
+        '400':
+           $ref: '#/components/responses/BadRequest'
+        '401':
+           $ref: '#/components/responses/Unautherize'
+        '404':
+          $ref: '#/components/responses/RecordNotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '500':
+           $ref: '#/components/responses/ServerError'
+
+
+components:
+  schemas:
+    theatreUpsertRequest:
+      $ref: "../schemas/requests/theatreUpsertRequest.yaml"
+    ProblemDetails:
+      $ref: "../schemas/error/ProblemDetails.yaml"
+    ValidationProblemDetails:
+       $ref: "../schemas/error/ValidationProblemDetails.yaml"
+
+  responses:
+  # HTTP Server Responses
+    theatreUpsertResponse:
+       $ref: "../schemas/response/theatreUpsertResponse.yaml"
+    201Response:
+       $ref: "../httpresponse/201.yaml"
+    Unautherize:
+       $ref: "../httpresponse/401.yaml"
+    ServerError:
+       $ref: "../httpresponse/500.yaml"
+    RecordNotFound:
+      $ref: "../httpresponse/404.yaml"
+    BadRequest:
+      $ref: "../httpresponse/400.yaml"
+    MethodNotAllowed:
+      $ref: "../httpresponse/405.yaml"
+
+# Security Schema for authentication or autherization  
+  securitySchemes:
+      bearerAuth: # arbitrary name for the security scheme
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+      oAuth2AllGrant:
+        type: oauth2
+        description: For more information, see https://xxx.com/docs/oauth2/requests
+        flows: 
+          implicit:
+            authorizationUrl: https://xxxx.com/oauth2/authorize
+            scopes:
+              read: Grant read-only access to all your data except for the account and user info
+              write: Grant write-only access to all your data except for the account and user info
+              profile: Grant read-only access to the account and user info only
+      oAuth2Read:
+        type: oauth2
+        description: For more information, see https://xxx.com/docs/oauth2/requests
+        flows: 
+          implicit:
+            authorizationUrl: https://xxxx.com/oauth2/authorize
+            scopes:
+              read: Grant read-only access to all your data except for the account and user info
+
+security:
+  - bearerAuth: []
+  - oAuth2AllGrant: []
+  - oAuth2Read: []
+      

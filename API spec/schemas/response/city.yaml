@@ -1,0 +1,19 @@
+
+type: object
+properties:
+  name:
+    type: string
+    description: city name.
+    nullable: false
+  district:
+    type: integer
+    description: district name .
+    nullable: false
+  state:
+    type: integer
+    description: state name  .
+    nullable: false
+  countryId:
+    type: integer
+    description: country ID  .
+    nullable: false

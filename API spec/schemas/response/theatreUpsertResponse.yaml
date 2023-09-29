@@ -1,0 +1,23 @@
+
+type: object
+properties:
+  movieId:
+    type: integer
+    description: movie Id.
+    required: true
+    nullable: false
+  audiId:
+    type: integer
+    description: audi Id.
+    required: true
+    nullable: false
+  blockedSeats:
+    type: integer
+    description: blockedSeats Id.
+    nullable: false
+
+  showDateTime:
+    type: string
+    description: city name.
+    format : date
+    nullable: false

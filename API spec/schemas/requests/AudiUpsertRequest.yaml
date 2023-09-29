@@ -1,0 +1,31 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Audi name.
+    nullable: false
+  frontSeats:
+    type: integer
+    description: front seats count.
+    required: true
+    nullable: false
+  middleSeats:
+    type: integer
+    description: middle seats count.
+    required: true
+    nullable: false
+  backSeats:
+    type: integer
+    description: back seats count.
+    required: true
+    nullable: false
+  totalSeats:
+    type: integer
+    description: totalSeats  count.
+    required: true
+    nullable: false
+  theatreId:
+    type: integer
+    required: true
+    description: totalSeats  count.
+    nullable: false
