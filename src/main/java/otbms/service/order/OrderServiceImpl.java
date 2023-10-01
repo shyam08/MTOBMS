@@ -47,19 +47,20 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderProcessResponse processOrder(OrderProcessRequest request) throws Exception {
-        switch (request.getAction()) {
-            case initiatePayment:
-                PaymentInitiateResponse response = paymentServiceApiClient.initiate(new PaymentInitiateRequest());
-                Order order = orderRepository.findById(request.getOrderId()).get();
-                order.setStatus(Status.processing.ordinal());
-                return new OrderProcessResponse(request.getOrderId(), response.getTransactionId(),
-                        response.getPayementGtwId(), response.getNextAction(), response.getMetaData());
-            case paymentConfirmation:
-                return updateOrderOnPayment(request);
-            default:
-                throw new InvalidActionException(String.format("invalid action %s", request.getAction()));
+
+                try {
+                    PaymentInitiateResponse response = paymentServiceApiClient.initiate(new PaymentInitiateRequest());
+                    Order order = orderRepository.findById(request.getOrderId()).get();
+                    order.setStatus(Status.processing.ordinal());
+                    OrderProcessResponse orderProcessResponse = new OrderProcessResponse();
+                    orderProcessResponse = updateOrderOnPayment(request);
+                    //TODO: publish seats booking status
+                    return  orderProcessResponse;
+                }catch(Exception e) {
+                    throw new InvalidActionException(String.format("invalid action %s", request.getAction()));
+                }
         }
-    }
+
 
     protected OrderProcessResponse updateOrderOnPayment(OrderProcessRequest request) {
         Order order = orderRepository.findByOrderPaymentId(request.getPaymentTransactionId()).get();
@@ -67,8 +68,6 @@ public class OrderServiceImpl implements OrderService {
         order.setNextAction(request.getAction().ordinal());
         order.setReason(request.getReason());
         orderRepository.save(order);
-        //TODO: publish seats booking status
-
         return new OrderProcessResponse(order.getId(), request.getPaymentTransactionId(), request.getPaymentGtwId(), PaymentAction.none,
                 null);
     }
