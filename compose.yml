@@ -1,9 +1,9 @@
 version: "3.7"
 services:
   mtombs:
-    image: motbms-services:1.0.0
+    image: motbms-app:1.0.0
     ports:
-      - 8080:9090
+      - 8080:8080
     networks:
       - springapimysql-net
     environment:
@@ -24,9 +24,9 @@ services:
   mysqldb:
     image: mysql:5.7
     volumes:
-      - ./database/db-script.sql:/docker-entrypoint-initdb.d/db-script.sql
+      - ./database/db-script1.sql:/docker-entrypoint-initdb.d/db-script1.sql
     ports:
-      - 3306:8084
+      - 3306:3306
     networks:
       - springapimysql-net
     environment:
@@ -63,6 +63,3 @@ services:
 networks:
   springapimysql-net:
     driver: bridge
-
-
-
