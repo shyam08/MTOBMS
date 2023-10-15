@@ -1,8 +1,8 @@
-package OTBMS.dao.cart;
+package otbms.dao.cart;
 
 import com.google.common.collect.Sets;
-import OTBMS.exception.SeatNotAvailableException;
-import OTBMS.utils.Common;
+import otbms.exception.SeatNotAvailableException;
+import otbms.utils.Common;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

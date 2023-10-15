@@ -1,9 +1,9 @@
-package OTBMS.controller.catalog;
+package otbms.controller.catalog;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import OTBMS.dao.catalog.*;
-import OTBMS.dto.catalog.ShowResponse;
-import OTBMS.dto.catalog.ShowUpsertRequest;
+import otbms.dao.catalog.*;
+import otbms.dto.catalog.ShowResponse;
+import otbms.dto.catalog.ShowUpsertRequest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,12 +1,12 @@
-package OTBMS.controller.catalog;
+package otbms.controller.catalog;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import OTBMS.dao.catalog.Movie;
-import OTBMS.dao.catalog.MovieRepository;
-import OTBMS.dao.catalog.MovieVariant;
-import OTBMS.dao.catalog.MovieVariantRepository;
-import OTBMS.dto.catalog.MovieResponse;
-import OTBMS.dto.catalog.MovieUpsertRequest;
+import otbms.dao.catalog.Movie;
+import otbms.dao.catalog.MovieRepository;
+import otbms.dao.catalog.MovieVariant;
+import otbms.dao.catalog.MovieVariantRepository;
+import otbms.dto.catalog.MovieResponse;
+import otbms.dto.catalog.MovieUpsertRequest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

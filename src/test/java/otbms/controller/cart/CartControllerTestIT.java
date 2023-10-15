@@ -1,10 +1,10 @@
-package OTBMS.controller.cart;
+package otbms.controller.cart;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Sets;
-import OTBMS.dao.cart.CartBookingCacheRepository;
-import OTBMS.dto.cart.*;
-import OTBMS.utils.Common;
+import otbms.dao.cart.CartBookingCacheRepository;
+import otbms.dto.cart.*;
+import otbms.utils.Common;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

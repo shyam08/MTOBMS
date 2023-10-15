@@ -1,12 +1,12 @@
-package OTBMS.controller.catalog;
+package otbms.controller.catalog;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import OTBMS.dao.catalog.Audi;
-import OTBMS.dao.catalog.AudiRepository;
-import OTBMS.dao.catalog.Theatre;
-import OTBMS.dao.catalog.TheatreRepository;
-import OTBMS.dto.catalog.AudiResponse;
-import OTBMS.dto.catalog.AudiUpsertRequest;
+import otbms.dao.catalog.Audi;
+import otbms.dao.catalog.AudiRepository;
+import otbms.dao.catalog.Theatre;
+import otbms.dao.catalog.TheatreRepository;
+import otbms.dto.catalog.AudiResponse;
+import otbms.dto.catalog.AudiUpsertRequest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
