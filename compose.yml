@@ -24,7 +24,7 @@ services:
   mysqldb:
     image: mysql:5.7
     volumes:
-      - ./database/db-script1.sql:/docker-entrypoint-initdb.d/db-script1.sql
+      - ./database/db-script.sql:/docker-entrypoint-initdb.d/db-script.sql
     ports:
       - 3306:3306
     networks:
