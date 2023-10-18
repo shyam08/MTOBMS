@@ -1,38 +1,23 @@
 package otbms.service.search;
 
-import otbms.dao.search.Theatre;
-import otbms.dao.search.TheatreSearchRepository;
-import otbms.dto.search.TheatreResponse;
-import otbms.dto.search.TheatreSearchRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
-import java.util.Collections;
-import java.util.List;
 
 @Service
-public class TheatreSearchServiceImpl implements TheatreSearchService {
+public class TheatreSearchServiceImpl  {
 
     @Value("${index.theatre.geo.distance}")
     String geoDistance;
-    @Autowired
-    private TheatreSearchRepository theatreSearchRepository;
 
-    @Override
+
+    /*@Override
     public List<TheatreResponse> theatreSearch(TheatreSearchRequest request) throws Exception {
-        switch (request.getFilterType()) {
-            case city:
-                return searchByCity(request);
-            case geo:
-                return searchByGeo(request);
-            default:
-                throw new IllegalArgumentException(String.format("invalid filterType %s", request.getFilterType()));
-        }
+		return switch (request.getFilterType()) {
+			case city -> searchByCity(request);
+			case geo -> searchByGeo(request);
+			default ->
+					throw new IllegalArgumentException(String.format("invalid filterType %s", request.getFilterType()));
+		};
 
     }
 
@@ -56,4 +41,5 @@ public class TheatreSearchServiceImpl implements TheatreSearchService {
                 , r.getCityName(), r.getLatLng())).stream().toList();
         return theatreResponse;
     }
+    */
 }

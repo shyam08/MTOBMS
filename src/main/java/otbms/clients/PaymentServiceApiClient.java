@@ -11,12 +11,10 @@ import otbms.exception.InvalidPaymentGatewayException;
 
 import javax.naming.ServiceUnavailableException;
 
-@FeignClient(value = "paymentSvcClient", path = "/payment-service/v1/payments", url = "http://localhost:9090")
-@CircuitBreaker(name="payment-Service", fallbackMethod = "responseFallBack")
+@FeignClient(value = "paymentSvcClient", path = "/payment-service/v1/payments", url = "http://localhost:8080")
 public interface PaymentServiceApiClient {
 
     @PostMapping("/initiate")
     PaymentInitiateResponse initiate(@Valid @RequestBody PaymentInitiateRequest request);
 
-    InvalidPaymentGatewayException responseFallBack(ServiceUnavailableException suex);
 }

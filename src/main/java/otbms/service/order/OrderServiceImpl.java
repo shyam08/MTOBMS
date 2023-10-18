@@ -1,5 +1,6 @@
 package otbms.service.order;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import otbms.clients.PaymentServiceApiClient;
 import otbms.controller.order.OrderAction;
 import otbms.dao.order.Order;
@@ -46,6 +47,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @CircuitBreaker(name="order-Service", fallbackMethod = "responseFallBack")
     public OrderProcessResponse processOrder(OrderProcessRequest request) throws Exception {
 
                 try {
@@ -60,7 +62,9 @@ public class OrderServiceImpl implements OrderService {
                     throw new InvalidActionException(String.format("invalid action %s", request.getAction()));
                 }
         }
-
+   void responseFallBack(){
+       // take action
+    }
 
     protected OrderProcessResponse updateOrderOnPayment(OrderProcessRequest request) {
         Order order = orderRepository.findByOrderPaymentId(request.getPaymentTransactionId()).get();

@@ -12,12 +12,9 @@ import otbms.exception.InvalidPaymentGatewayException;
 
 import javax.naming.ServiceUnavailableException;
 
-@FeignClient(value = "orderSvcClient", path = "/order-svc/v1/orders", url = "http://localhost:9090")
-@CircuitBreaker(name="payment-Service", fallbackMethod = "responseFallBack")
-
+@FeignClient(value = "orderSvcClient", path = "/order-svc/v1/orders", url = "http://localhost:8080")
 public interface OrderServiceApiClient {
-
     @PostMapping("/process")
     OrderProcessResponse orderProcess(@Valid @RequestBody OrderProcessRequest request);
-    InvalidActionException responseFallBack(ServiceUnavailableException suex);
+
 }
