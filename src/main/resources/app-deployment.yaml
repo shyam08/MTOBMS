@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+
+  labels:
+    app: motbms
+  name: motbms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: motbms
+  strategy: {}
+  template:
+    metadata:
+
+      labels:
+        app: motbms
+    spec:
+      containers:
+        - image: shyamdocker80/sap-motmbs:1.0.0
+          name: motbms
+          ports:
+             - containerPort: 8080
+
+          env: # Setting Environmental Variables
+            - name: DB_HOST   # Setting Database host address
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-configmap
+                  key: host
+            - name: DB_NAME  # Setting Database name
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-configmap
+                  key: name
+            - name: DB_USERNAME  # Setting Database username
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: user
+            - name: DB_PASSWORD # Setting Database password
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
+
+

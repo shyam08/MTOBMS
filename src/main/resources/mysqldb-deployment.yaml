@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sapmysql
+spec:
+  selector:
+    matchLabels:
+      app: sapmysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sapmysql
+    spec:
+      containers:
+        - image: mysql:5.6
+          name: sapmysql
+
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
+
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-configmap
+                  key: name
+
+          ports:
+            - containerPort: 3306
+              name: sapmysql
+
+
+
